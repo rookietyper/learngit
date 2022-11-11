@@ -1,0 +1,22 @@
+python -m torch.distributed.launch \
+        --nproc_per_node=4 \
+        --use_env \
+        main.py \
+        --pretrained logs/checkpoint_last.pth \
+        --output_dir logs/ \
+        --dataset_file hico \
+        --hoi_path /data2/gaojiayi_data/hico_20160224_det \
+        --num_obj_classes 80 \
+        --num_verb_classes 117 \
+        --backbone resnet50 \
+        --num_queries 64 \
+        --dec_layers_hopd 3 \
+        --dec_layers_interaction 3 \
+        --epochs 10 \
+        --freeze_mode 1 \
+        --obj_reweight \
+        --verb_reweight \
+        --lr 1e-5 \
+        --lr_backbone 1e-6 \
+        --use_nms_filter \
+        --amp
